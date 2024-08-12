@@ -10,7 +10,8 @@ typedef enum	e_data
 	LAST_NAME,
 	NICKNAME,
 	PHONE_NUMBER,
-	DARKEST_SECRET
+	DARKEST_SECRET,
+  NONE
 }	data_type;
 
 class Contact {
