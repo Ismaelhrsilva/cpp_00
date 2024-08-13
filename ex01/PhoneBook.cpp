@@ -1,7 +1,9 @@
 #include "PhoneBook.hpp"
+#include <limits>
 
 
 PhoneBook::PhoneBook(void){
+  this->_n_contact = 0;
   this->_prompt();}
 
 PhoneBook::~PhoneBook(void){}
@@ -24,63 +26,50 @@ std::string  PhoneBook::_selectPhrase(data_type type){
   return "";
 }
 
-void  PhoneBook::add_contact(void)
+void  PhoneBook::_add_info(int n_contact, data_type type)
 {
-  Contact Contact;
-  std::string input;
-  
-  for (int i = -1; i <= DARKEST_SECRET; i++){
-    std::cout << _selectPhrase(static_cast<data_type>(i)) << std::endl;
-    std::getline(std::cin, input);
-    Contact.setData(input, static_cast<data_type>(i));
-  }
-  Contact.printContactInfo();
+  std::string buffer;
+
+  std::cout << _selectPhrase(type) << std::endl;
+  std::getline(std::cin, buffer);
+  PhoneBook::_Contact[n_contact].setData(buffer, type);
+}
+
+void  PhoneBook::_add_contact(void)
+{
+  this->_add_info(this->_n_contact, FIRST_NAME);
+  this->_add_info(this->_n_contact, LAST_NAME);
+  this->_add_info(this->_n_contact, NICKNAME);
+  this->_add_info(this->_n_contact, PHONE_NUMBER);
+  this->_add_info(this->_n_contact, DARKEST_SECRET);
+  this->_n_contact++;
+}
+
+void  PhoneBook::_search(void) const{
+  for (int i = 0; i < this->_n_contact; i++)
+    _Contact[i].printContactInfo();
 }
 
 void  PhoneBook::_prompt(void){
 
-  std::string input;
+  std::string buffer;
+  bool exit = false;
 
-  std::cout << "Enter input :" << std::endl;
-  std::getline(std::cin, input);
-  while (input != "EXIT")
-  {
-      if (input == "ADD")
-        add_contact();
-      else if (input == "SEARCH")
-        std::cout << "search" << std::endl;
-      else if (input == "EXIT")
-        std::cout << "exit" << std::endl;
-      else
-        std::cout << "Invalid input" << std::endl;
-      std::cout << "Enter input :" << std::endl;
-      std::getline(std::cin, input);
+  std::cout << "Welcome to MyAwesomePhoneBook" << std::endl;
+  while (!exit){
+    std::cout << "Enter your command" << std::endl;
+    std::cout << "1. ADD" << std::endl;
+    std::cout << "2. SEARCH" << std::endl;
+    std::cout << "3. EXIT" << std::endl;
+    std::cout << "--------------------------" << std::endl;
+    std::cin >> buffer;
+    if (buffer == "ADD")
+      _add_contact(); 
+    else if (buffer == "SEARCH")
+      _search();
+    else if (buffer == "EXIT")
+      exit = true;
+    else
+      std::cout << "Invalid command" << std::endl;
   }
-
 }
-
-/*void  PhoneBook::add_contact(void)
-{
-  Contact Contact;
-  
-  std::string input;
-
-  std::cout << "Enter first name:" << std::endl;
-  std::cin >> input;
-  Contact.setData(input, FIRST_NAME);
-  std::cout << "Enter last name:" << std::endl;
-  std::cin >> input;
-  Contact.setData(input, LAST_NAME);
-  std::cout << "Enter nickname:" << std::endl;
-  std::cin >> input;
-  Contact.setData(input, NICKNAME);
-  std::cout << "Enter phone number:" << std::endl;
-  std::cin >> input;
-  Contact.setData(input, PHONE_NUMBER);
-  std::cout << "Enter darkest secret:" << std::endl;
-  std::cin >> input;
-  Contact.setData(input, DARKEST_SECRET);
-
-  std::cout << std::endl;
-  Contact.printContactInfo();
-}*/
