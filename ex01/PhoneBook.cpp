@@ -45,9 +45,34 @@ void  PhoneBook::_add_contact(void)
   this->_n_contact++;
 }
 
+void  PhoneBook::_formatSearch(std::string data) const {
+  if (data.size() > 10)
+    std::cout << std::setw(9) << data.substr(0, 9) << ".|";
+  else
+    std::cout << std::setw(10) << std::setfill(' ') << data << "|";
+}
+
 void  PhoneBook::_search(void) const{
+  if (this->_n_contact == 0)
+  {
+    std::cout << "There are no contacts in the PhoneBook" << std::endl;
+    return ;
+  }
+  _formatSearch("Index");
+  _formatSearch("First Name");
+  _formatSearch("Last Name");
+  _formatSearch("Nickname");
+  std::cout << std::endl;
   for (int i = 0; i < (this->_n_contact < 8 ? this->_n_contact: 8); i++)
-    _Contact[i].printContactInfo();
+  {
+   // std::cout << "|";
+    std::cout << std::setw(10) << std::setfill(' ') << i + 1 << "|";
+    _formatSearch(_Contact[i].getContactInfo(FIRST_NAME));
+    _formatSearch(_Contact[i].getContactInfo(LAST_NAME));
+    _formatSearch(_Contact[i].getContactInfo(NICKNAME));
+    std::cout << std::endl;
+    //_Contact[i].printContactInfo();
+  }
 }
 
 void  PhoneBook::_prompt(void){

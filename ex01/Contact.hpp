@@ -22,6 +22,7 @@ class Contact {
 
     bool  setData(std::string data, data_type type);
     void	printContactInfo( void ) const;
+    std::string getContactInfo( data_type type ) const;
 
   private:
     std::string _first_name;

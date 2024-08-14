@@ -28,6 +28,23 @@ bool  Contact::setData(std::string data, data_type type)
   }
 }
 
+std::string Contact::getContactInfo( data_type type ) const{
+  switch (type) {
+  case FIRST_NAME:
+    return _first_name;
+  case LAST_NAME:
+    return _last_name;
+  case NICKNAME:
+    return _nickname;
+  case PHONE_NUMBER:
+    return _phone_number;
+  case DARKEST_SECRET:
+    return _darkest_secret;
+  default:
+    return "";
+  }
+}
+
 void	Contact::printContactInfo( void ) const
 {
 	std::cout << "First name:\t" << this->_first_name << std::endl;
