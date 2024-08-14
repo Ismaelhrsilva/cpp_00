@@ -42,12 +42,11 @@ void  PhoneBook::_add_contact(void)
   this->_add_info(this->_n_contact % 8, NICKNAME);
   this->_add_info(this->_n_contact % 8, PHONE_NUMBER);
   this->_add_info(this->_n_contact % 8, DARKEST_SECRET);
-  this->_n_contact = (this->_n_contact + 1) % 8; 
-  //this->_n_contact++;
+  this->_n_contact++;
 }
 
 void  PhoneBook::_search(void) const{
-  for (int i = 0; i < this->_n_contact; i++)
+  for (int i = 0; i < (this->_n_contact < 8 ? this->_n_contact: 8); i++)
     _Contact[i].printContactInfo();
 }
 
