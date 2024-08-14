@@ -37,12 +37,13 @@ void  PhoneBook::_add_info(int n_contact, data_type type)
 
 void  PhoneBook::_add_contact(void)
 {
-  this->_add_info(this->_n_contact, FIRST_NAME);
-  this->_add_info(this->_n_contact, LAST_NAME);
-  this->_add_info(this->_n_contact, NICKNAME);
-  this->_add_info(this->_n_contact, PHONE_NUMBER);
-  this->_add_info(this->_n_contact, DARKEST_SECRET);
-  this->_n_contact++;
+  this->_add_info(this->_n_contact % 8, FIRST_NAME);
+  this->_add_info(this->_n_contact % 8, LAST_NAME);
+  this->_add_info(this->_n_contact % 8, NICKNAME);
+  this->_add_info(this->_n_contact % 8, PHONE_NUMBER);
+  this->_add_info(this->_n_contact % 8, DARKEST_SECRET);
+  this->_n_contact = (this->_n_contact + 1) % 8; 
+  //this->_n_contact++;
 }
 
 void  PhoneBook::_search(void) const{
