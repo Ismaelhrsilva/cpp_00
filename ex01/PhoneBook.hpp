@@ -21,8 +21,6 @@ class PhoneBook {
     void _search(void) const;
     void _formatSearch(std::string data) const;
 
-    int _size;
-    int _pos;
     int _n_contact;
     Contact _Contact[8];
 };

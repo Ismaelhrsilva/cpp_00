@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
 #include <limits>
-
+#include <cstdlib>
+#include <sstream>
 
 PhoneBook::PhoneBook(void){
   this->_n_contact = 0;
@@ -32,6 +33,7 @@ void  PhoneBook::_add_info(int n_contact, data_type type)
 
   std::cout << _selectPhrase(type) << std::endl;
   std::getline(std::cin, buffer);
+  std::cin.clear();
   PhoneBook::_Contact[n_contact].setData(buffer, type);
 }
 
@@ -43,6 +45,7 @@ void  PhoneBook::_add_contact(void)
   this->_add_info(this->_n_contact % 8, PHONE_NUMBER);
   this->_add_info(this->_n_contact % 8, DARKEST_SECRET);
   this->_n_contact++;
+  system("clear");
 }
 
 void  PhoneBook::_formatSearch(std::string data) const {
@@ -53,6 +56,8 @@ void  PhoneBook::_formatSearch(std::string data) const {
 }
 
 void  PhoneBook::_search(void) const{
+
+  std::string buffer;
   if (this->_n_contact == 0)
   {
     std::cout << "There are no contacts in the PhoneBook" << std::endl;
@@ -65,14 +70,40 @@ void  PhoneBook::_search(void) const{
   std::cout << std::endl;
   for (int i = 0; i < (this->_n_contact < 8 ? this->_n_contact: 8); i++)
   {
-   // std::cout << "|";
     std::cout << std::setw(10) << std::setfill(' ') << i + 1 << "|";
     _formatSearch(_Contact[i].getContactInfo(FIRST_NAME));
     _formatSearch(_Contact[i].getContactInfo(LAST_NAME));
     _formatSearch(_Contact[i].getContactInfo(NICKNAME));
     std::cout << std::endl;
-    //_Contact[i].printContactInfo();
   }
+
+  int index = 0;
+  bool valid = false;
+  std::cout << "Search a specific contact (1 to 8):" << std::endl;
+  while (std::getline(std::cin, buffer)){
+  		std::cin.clear();
+		std::stringstream ss(buffer);
+		if (ss >> index && (index >= 1 && index <= 8)){
+			index--;
+			if (index < this->_n_contact){
+				valid = true;
+				break ;
+			}
+			else {
+				std::cout << "Invalid index" << std::endl;
+			}
+		}
+		else {
+			std::cout << "Invalid index" << std::endl;
+		}
+	}
+  if (valid){
+	std::cout << _Contact[index].getContactInfo(FIRST_NAME) << std::endl;
+  	std::cout << _Contact[index].getContactInfo(LAST_NAME) << std::endl;
+  	std::cout << _Contact[index].getContactInfo(NICKNAME) << std::endl;
+  	std::cout << _Contact[index].getContactInfo(PHONE_NUMBER) << std::endl;
+  	std::cout << _Contact[index].getContactInfo(DARKEST_SECRET) << std::endl;
+	}
 }
 
 void  PhoneBook::_prompt(void){
@@ -87,7 +118,10 @@ void  PhoneBook::_prompt(void){
     std::cout << "2. SEARCH" << std::endl;
     std::cout << "3. EXIT" << std::endl;
     std::cout << "--------------------------" << std::endl;
-    std::cin >> buffer;
+  	std::getline(std::cin, buffer);
+	std::cin.clear();
+	if (buffer.empty())
+		break ;
     if (buffer == "ADD")
       _add_contact(); 
     else if (buffer == "SEARCH")
