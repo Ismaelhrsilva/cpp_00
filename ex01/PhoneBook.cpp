@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <unistd.h>
+#include <cstdio>
 
 PhoneBook::PhoneBook(void){
   this->_n_contact = 0;
@@ -139,22 +140,32 @@ void  PhoneBook::_prompt(void){
   system("clear");
   std::cout << "Welcome to MyAwesomePhoneBook" << std::endl;
   while (!exit){
+	std::clearerr(stdin);
+	std::cin.clear();
     std::cout << "Enter your command" << std::endl;
     std::cout << "1. ADD" << std::endl;
     std::cout << "2. SEARCH" << std::endl;
     std::cout << "3. EXIT" << std::endl;
     std::cout << "--------------------------" << std::endl;
   	std::getline(std::cin, buffer);
-	std::cin.clear();
-	if (buffer.empty())
-		break ;
+	if (std::cin.eof()){
+		break ;}
+	if (buffer.empty()){
+		std::cout << "Empty input, try again" << std::endl;
+		sleep(1);
+  		system("clear");
+		continue ;}
     if (buffer == "ADD")
       _add_contact(); 
     else if (buffer == "SEARCH")
       _search();
     else if (buffer == "EXIT")
       exit = true;
-    else
-      std::cout << "Invalid command" << std::endl;
+    else if (buffer != "ADD" && buffer != "SEARCH" && buffer != "EXIT"){
+      	std::cout << "Invalid command, try again" << std::endl;
+		sleep(1);
+  		system("clear");}
+	else
+		break ;
   }
 }

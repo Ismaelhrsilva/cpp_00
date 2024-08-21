@@ -6,7 +6,7 @@ MAGENT				= $(shell tput setaf 5)
 RESET				= $(shell tput sgr0)
 
 NAME				= MyAwesomePhoneBook
-INCLUDES 		= -I
+INCLUDES 			= -I
 FILES				= $(wildcard *.cpp)
 OBJS				= $(FILES:%.cpp=%.o)
 COMPILER			= c++
