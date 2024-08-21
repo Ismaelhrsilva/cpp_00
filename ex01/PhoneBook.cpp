@@ -80,8 +80,11 @@ void  PhoneBook::_search(void) const{
   int index = 0;
   bool valid = false;
   std::cout << "Search a specific contact (1 to 8):" << std::endl;
-  while (std::getline(std::cin, buffer)){
-  		std::cin.clear();
+  while (true){
+		std::getline(std::cin, buffer);
+		std::cin.clear();
+		if (buffer.empty())
+			exit(1) ;
 		std::stringstream ss(buffer);
 		if (ss >> index && (index >= 1 && index <= 8)){
 			index--;
@@ -91,19 +94,21 @@ void  PhoneBook::_search(void) const{
 			}
 			else {
 				std::cout << "Invalid index" << std::endl;
+  				std::cout << "Search a specific contact (1 to 8):" << std::endl;
 			}
 		}
 		else {
 			std::cout << "Invalid index" << std::endl;
+			std::cout << "Search a specific contact (1 to 8):" << std::endl;
 		}
-	}
+  }
   if (valid){
 	std::cout << _Contact[index].getContactInfo(FIRST_NAME) << std::endl;
   	std::cout << _Contact[index].getContactInfo(LAST_NAME) << std::endl;
   	std::cout << _Contact[index].getContactInfo(NICKNAME) << std::endl;
   	std::cout << _Contact[index].getContactInfo(PHONE_NUMBER) << std::endl;
   	std::cout << _Contact[index].getContactInfo(DARKEST_SECRET) << std::endl;
-	}
+  }
 }
 
 void  PhoneBook::_prompt(void){
