@@ -20,6 +20,7 @@ class PhoneBook {
     void  _add_info(int n_contact, data_type type);
     void _search(void) const;
     void _formatSearch(std::string data) const;
+	void _displayPhoneBook(void) const;
 
     int _n_contact;
     Contact _Contact[8];

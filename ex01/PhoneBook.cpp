@@ -2,6 +2,7 @@
 #include <limits>
 #include <cstdlib>
 #include <sstream>
+#include <unistd.h>
 
 PhoneBook::PhoneBook(void){
   this->_n_contact = 0;
@@ -35,16 +36,21 @@ void  PhoneBook::_add_info(int n_contact, data_type type)
   std::getline(std::cin, buffer);
   std::cin.clear();
   PhoneBook::_Contact[n_contact].setData(buffer, type);
+  system("clear");
 }
 
 void  PhoneBook::_add_contact(void)
 {
+  system("clear");
   this->_add_info(this->_n_contact % 8, FIRST_NAME);
   this->_add_info(this->_n_contact % 8, LAST_NAME);
   this->_add_info(this->_n_contact % 8, NICKNAME);
   this->_add_info(this->_n_contact % 8, PHONE_NUMBER);
   this->_add_info(this->_n_contact % 8, DARKEST_SECRET);
   this->_n_contact++;
+  system("clear");
+  std::cout << "Your contact has been successfully added!" << std::endl;
+  sleep(1);
   system("clear");
 }
 
@@ -55,14 +61,9 @@ void  PhoneBook::_formatSearch(std::string data) const {
     std::cout << std::setw(10) << std::setfill(' ') << data << "|";
 }
 
-void  PhoneBook::_search(void) const{
-
-  std::string buffer;
-  if (this->_n_contact == 0)
-  {
-    std::cout << "There are no contacts in the PhoneBook" << std::endl;
-    return ;
-  }
+void  PhoneBook::_displayPhoneBook(void) const{
+  sleep(1);
+  system("clear");
   _formatSearch("Index");
   _formatSearch("First Name");
   _formatSearch("Last Name");
@@ -76,6 +77,17 @@ void  PhoneBook::_search(void) const{
     _formatSearch(_Contact[i].getContactInfo(NICKNAME));
     std::cout << std::endl;
   }
+}
+
+void  PhoneBook::_search(void) const{
+  system("clear");
+  std::string buffer;
+  if (this->_n_contact == 0)
+  {
+    std::cout << "There are no contacts in the PhoneBook" << std::endl;
+    return ;
+  }
+  this->_displayPhoneBook();
 
   int index = 0;
   bool valid = false;
@@ -94,11 +106,13 @@ void  PhoneBook::_search(void) const{
 			}
 			else {
 				std::cout << "Invalid index" << std::endl;
+  				this->_displayPhoneBook();
   				std::cout << "Search a specific contact (1 to 8):" << std::endl;
 			}
 		}
 		else {
 			std::cout << "Invalid index" << std::endl;
+			this->_displayPhoneBook();
 			std::cout << "Search a specific contact (1 to 8):" << std::endl;
 		}
   }
@@ -109,6 +123,8 @@ void  PhoneBook::_search(void) const{
   	std::cout << _Contact[index].getContactInfo(PHONE_NUMBER) << std::endl;
   	std::cout << _Contact[index].getContactInfo(DARKEST_SECRET) << std::endl;
   }
+  sleep(2);
+  system("clear");
 }
 
 void  PhoneBook::_prompt(void){
@@ -116,6 +132,7 @@ void  PhoneBook::_prompt(void){
   std::string buffer;
   bool exit = false;
 
+  system("clear");
   std::cout << "Welcome to MyAwesomePhoneBook" << std::endl;
   while (!exit){
     std::cout << "Enter your command" << std::endl;
