@@ -62,8 +62,6 @@ void  PhoneBook::_formatSearch(std::string data) const {
 }
 
 void  PhoneBook::_displayPhoneBook(void) const{
-  sleep(1);
-  system("clear");
   _formatSearch("Index");
   _formatSearch("First Name");
   _formatSearch("Last Name");
@@ -85,6 +83,8 @@ void  PhoneBook::_search(void) const{
   if (this->_n_contact == 0)
   {
     std::cout << "There are no contacts in the PhoneBook" << std::endl;
+	sleep(1);
+  	system("clear");
     return ;
   }
   this->_displayPhoneBook();
@@ -106,12 +106,16 @@ void  PhoneBook::_search(void) const{
 			}
 			else {
 				std::cout << "Invalid index" << std::endl;
+				sleep(1);
+  				system("clear");
   				this->_displayPhoneBook();
   				std::cout << "Search a specific contact (1 to 8):" << std::endl;
 			}
 		}
 		else {
 			std::cout << "Invalid index" << std::endl;
+			sleep(1);
+  			system("clear");
 			this->_displayPhoneBook();
 			std::cout << "Search a specific contact (1 to 8):" << std::endl;
 		}

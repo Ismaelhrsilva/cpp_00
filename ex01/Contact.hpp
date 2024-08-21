@@ -20,7 +20,7 @@ class Contact {
     Contact(void);
     ~Contact(void);
 
-    bool  setData(std::string data, data_type type);
+    void	setData(std::string data, data_type type);
     void	printContactInfo( void ) const;
     std::string getContactInfo( data_type type ) const;
 
@@ -30,6 +30,8 @@ class Contact {
     std::string _nickname;
     std::string _phone_number;
     std::string _darkest_secret;
+
+	std::string	_phone_number_valid(std::string data);
 };
 
 #endif

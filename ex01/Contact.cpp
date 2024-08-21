@@ -1,30 +1,55 @@
 #include "Contact.hpp"
-
+#include <unistd.h>
+#include <cctype>
 
 Contact::Contact(void) {}
 Contact::~Contact(void) {}
 
-bool  Contact::setData(std::string data, data_type type)
+std::string	Contact::_phone_number_valid(std::string data){
+
+  while (data.length() != 9){
+	std::cout << "The phone number must have 9 digits. Try again" << std::endl;
+  	std::getline(std::cin, data);
+  	std::cin.clear();
+  }
+  for (size_t i = 0; i < data.length(); i++){
+		if (!std::isdigit(static_cast<unsigned char>(data[i]))){
+			std::cout << "Only number are allowed. Try again" << std::endl;
+  			std::getline(std::cin, data);
+  			std::cin.clear();
+			return _phone_number_valid(data);
+			break ;
+		}
+	}
+  return (data);
+}
+
+void Contact::setData(std::string data, data_type type)
 {
+  while (data.empty()){
+	std::cout << "No allowed empty fields. Try again" << std::endl;
+  	std::getline(std::cin, data);
+  	std::cin.clear();
+  }
   switch (type) {
   case FIRST_NAME:
     this->_first_name = data;
-    return true;
+	return ;
   case LAST_NAME:
     this->_last_name = data;
-    return true;
+	return ;
   case NICKNAME:
-    this->_nickname= data;
-    return true;
+    this->_nickname = data;
+	return ;
   case PHONE_NUMBER:
-    this->_phone_number= data;
-    return true;
+    this->_phone_number = _phone_number_valid(data);
+	return ;
   case DARKEST_SECRET:
     this->_darkest_secret = data;
-    return true;
+	return ;
   default:
     std::cerr << "invalid type" << std::endl;
-    return false;
+	return ;
   }
 }
 
