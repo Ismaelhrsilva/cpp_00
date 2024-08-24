@@ -94,10 +94,18 @@ void  PhoneBook::_search(void) const{
   bool valid = false;
   std::cout << "Search a specific contact (1 to 8):" << std::endl;
   while (true){
-		std::getline(std::cin, buffer);
+		std::clearerr(stdin);
 		std::cin.clear();
-		if (buffer.empty())
-			exit(1) ;
+		std::getline(std::cin, buffer);
+		if (std::cin.eof()){
+			exit(1) ;}
+		if (buffer.empty()){
+			std::cout << "Empty input, try again" << std::endl;
+			sleep(1);
+  			system("clear");
+  			this->_displayPhoneBook();
+  			std::cout << "Search a specific contact (1 to 8):" << std::endl;
+			continue ;}
 		std::stringstream ss(buffer);
 		if (ss >> index && (index >= 1 && index <= 8)){
 			index--;
