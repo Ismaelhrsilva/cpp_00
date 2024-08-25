@@ -5,7 +5,7 @@ BLUE				= $(shell tput setaf 4)
 MAGENT				= $(shell tput setaf 5)
 RESET				= $(shell tput sgr0)
 
-NAME				= xxxxxxx
+NAME				= HI_THIS_IS_BRAIN
 INCLUDES 			= -I
 FILES				= $(wildcard *.cpp)
 OBJS				= $(FILES:%.cpp=%.o)

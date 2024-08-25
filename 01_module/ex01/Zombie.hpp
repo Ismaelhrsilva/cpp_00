@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 22:39:37 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/08/24 23:10:41 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:55:44 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ class Zombie {
 		void	setName( std::string name );
 };
 
-Zombie	*zombieHorde( int N, std::string &name );
+Zombie	*zombieHorde( int N, std::string name );
 
 #endif
