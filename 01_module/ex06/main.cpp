@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 19:06:06 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/08/25 20:08:31 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:06:38 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main(int argc, char **argv){
 
 	Harl harl;
 	harl.complain(argv[1]);
-
+	if (!harl.getSignal())
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 	return (0);
 }

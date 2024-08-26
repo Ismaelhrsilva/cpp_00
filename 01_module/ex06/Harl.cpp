@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:43:04 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/08/25 20:18:11 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:04:48 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ Harl::Harl( void ){
 	FuncComplain[INFO] = &Harl::info;
 	FuncComplain[WARNING] = &Harl::warning;
 	FuncComplain[ERROR] = &Harl::error;
+	this->_signal = 0;
 };
 
 Harl::~Harl( void ){};
+
+int	Harl::getSignal( void ){ 
+	return this->_signal;
+};
 
 void Harl::debug( void ){
 	std::cout << "[ DEBUB ]" << std::endl;
@@ -47,6 +52,7 @@ void Harl::complain( std::string level ){
 	std::string whatComplain[4]  = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	for (int i = 0; i < 4; i++){
 		if (!level.compare(whatComplain[i])){
+			this->_signal = 1;
 			switch (i){
 				case DEBUG:
 					(this->*FuncComplain[0])();
@@ -55,37 +61,7 @@ void Harl::complain( std::string level ){
 				case WARNING:
 					(this->*FuncComplain[2])();
 				case ERROR:
-					(this->*FuncComplain[3])();
-				default:
-					std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;}
+					(this->*FuncComplain[3])();}
 		};
-	}
+	};
 };
-
-/*void Harl::complain( std::string level ){
-
-	std::string whatComplain[5]  = {"DEBUG", "INFO", "WARNING", "ERROR", "OTHER"};
-	for (int i = 0; i < 5; i++){
-		if (!level.compare(whatComplain[i])){
-			switch (i){
-				case DEBUG:
-					(this->*FuncComplain[0])();
-				case INFO:
-					(this->*FuncComplain[1])();
-				case WARNING:
-					(this->*FuncComplain[2])();
-				case ERROR:
-					(this->*FuncComplain[3])();
-				default:
-					std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;}
-		};
-	}
-};*/
-
-/*void Harl::complain( std::string level ){
-	std::string whatComplain[4]  = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	for (int i = 0; i < 4; i++){
-		if (!level.compare(whatComplain[i]))
-	  		(this->*FuncComplain[i])();
-	}
-};*/
