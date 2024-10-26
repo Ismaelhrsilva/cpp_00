@@ -13,18 +13,12 @@ PhoneBook::~PhoneBook(void){}
 
 std::string  PhoneBook::_selectPhrase(data_type type){
   switch (type) {
-  case FIRST_NAME:
-    return "Enter first name:";
-  case LAST_NAME:
-    return "Enter last name:";
-  case NICKNAME:
-    return "Enter nickname:";
-  case PHONE_NUMBER:
-    return "Enter phone number:";
-  case DARKEST_SECRET:
-    return "Enter darkest secret:";
-  case NONE:
-    return "";
+  case FIRST_NAME:		return "Enter first name:";
+  case LAST_NAME:		return "Enter last name:";
+  case NICKNAME:		return "Enter nickname:";
+  case PHONE_NUMBER:	return "Enter phone number:";
+  case DARKEST_SECRET:	return "Enter darkest secret:";
+  case NONE:			return "";
   }
   return "";
 }
@@ -68,8 +62,8 @@ void  PhoneBook::_displayPhoneBook(void) const{
   _formatSearch("Last Name");
   _formatSearch("Nickname");
   std::cout << std::endl;
-  for (int i = 0; i < (this->_n_contact < 8 ? this->_n_contact: 8); i++)
-  {
+
+  for (int i = 0; i < (this->_n_contact < 8 ? this->_n_contact: 8); i++) {
     std::cout << std::setw(10) << std::setfill(' ') << i + 1 << "|";
     _formatSearch(_Contact[i].getContactInfo(FIRST_NAME));
     _formatSearch(_Contact[i].getContactInfo(LAST_NAME));
@@ -81,8 +75,7 @@ void  PhoneBook::_displayPhoneBook(void) const{
 void  PhoneBook::_search(void) const{
   system("clear");
   std::string buffer;
-  if (this->_n_contact == 0)
-  {
+  if (this->_n_contact == 0) {
     std::cout << "There are no contacts in the PhoneBook" << std::endl;
 	sleep(1);
   	system("clear");
