@@ -92,9 +92,10 @@ void  PhoneBook::_search(void) const{
 		std::getline(std::cin, buffer);
 		if (std::cin.eof()){
 			exit(1) ;}
-		if (buffer.empty()){
-			std::cout << "Empty input, try again" << std::endl;
+		if (buffer.empty() or buffer.length() != 1){
+			std::cout << "Invalid index" << std::endl;
 			sleep(1);
+			valid = false;
   			system("clear");
   			this->_displayPhoneBook();
   			std::cout << "Search a specific contact (1 to 8):" << std::endl;
@@ -108,6 +109,7 @@ void  PhoneBook::_search(void) const{
 			}
 			else {
 				std::cout << "Invalid index" << std::endl;
+				valid = false;
 				sleep(1);
   				system("clear");
   				this->_displayPhoneBook();
@@ -117,6 +119,7 @@ void  PhoneBook::_search(void) const{
 		else {
 			std::cout << "Invalid index" << std::endl;
 			sleep(1);
+			valid = false;
   			system("clear");
 			this->_displayPhoneBook();
 			std::cout << "Search a specific contact (1 to 8):" << std::endl;

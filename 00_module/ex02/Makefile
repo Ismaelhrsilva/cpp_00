@@ -7,7 +7,9 @@ RESET				= $(shell tput sgr0)
 
 NAME				= Account
 INCLUDES 			= -I
-FILES				= $(wildcard *.cpp)
+FILES				= Account.cpp \
+					  tests.cpp
+
 OBJS				= $(FILES:%.cpp=%.o)
 COMPILER			= c++
 CFLAGS				= -Wall -Wextra -Werror -std=c++98
