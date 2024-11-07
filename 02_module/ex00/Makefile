@@ -7,7 +7,8 @@ RESET				= $(shell tput sgr0)
 
 NAME				= My_First_Class_in_Orthodox_Canonical_Form
 INCLUDES 			= -I
-FILES				= $(wildcard *.cpp)
+FILES				= main.cpp \
+					  Fixed.cpp
 OBJS				= $(FILES:%.cpp=%.o)
 COMPILER			= c++
 CFLAGS				= -Wall -Wextra -Werror -std=c++98
