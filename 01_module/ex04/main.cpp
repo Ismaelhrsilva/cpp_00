@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:25:00 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/08/25 18:33:20 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:35:12 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv){
 		return (1);}
 
 	std::string filename = argv[1];
-	std::string outfilename = "result";
+	std::string outfilename =  filename + ".replace";
 	std::string oldWord = argv[2];
 	std::string newWord = argv[3];
 	std::string content;

@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:58:04 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/08/25 16:06:27 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:54:50 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 
 int	main(void){
 	std::string	brain = "HI THIS IS BRAIN";
-	std::string	*ptr = &brain;
-	std::string &ref = brain;
+	std::string	*stringPTR = &brain;
+	std::string &stringREF = brain;
 
 	std::cout << &brain << std::endl;
-	std::cout << ptr << std::endl;
-	std::cout << &ref << std::endl;
+	std::cout << stringPTR << std::endl;
+	std::cout << &stringREF << std::endl;
 
 	std::cout << brain << std::endl;
-	std::cout << *ptr << std::endl;
-	std::cout << ref << std::endl;
-
+	std::cout << *stringPTR << std::endl;
+	std::cout << stringREF << std::endl;
 	return (0);
 }

@@ -6,12 +6,12 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 18:39:25 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/08/26 16:56:36 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:12:08 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP
+#ifndef harl_hpp
+# define harl_hpp
 
 # include <string>
 # include <iostream>
@@ -29,6 +29,7 @@ class Harl {
 		WARNING,
 		ERROR,
 	};
+	
 	
 	private:
 		void debug( void );

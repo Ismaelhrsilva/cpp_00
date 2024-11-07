@@ -7,7 +7,8 @@ RESET				= $(shell tput sgr0)
 
 NAME				= Harl
 INCLUDES 			= -I
-FILES				= $(wildcard *.cpp)
+FILES				= main.cpp \
+					  Harl.cpp
 OBJS				= $(FILES:%.cpp=%.o)
 COMPILER			= c++
 CFLAGS				= -Wall -Wextra -Werror -std=c++98
