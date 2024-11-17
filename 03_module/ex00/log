@@ -1,0 +1,35 @@
+main.cpp:22:15: error: no matching constructor for initialization of 'std::string' (aka 'basic_string<char>')
+        std::cout << std::string(20, "-") << std::endl;
+                     ^           ~~~~~~~
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:553:7: note: candidate constructor not viable: no known conversion from 'const char [2]' to 'char' for 2nd argument
+      basic_string(size_type __n, _CharT __c, const _Alloc& __a = _Alloc())
+      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:469:7: note: candidate constructor not viable: no known conversion from 'int' to 'const std::basic_string<char>' for 1st argument
+      basic_string(const basic_string& __str, size_type __pos,
+      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:518:7: note: candidate constructor not viable: no known conversion from 'int' to 'const char *' for 1st argument
+      basic_string(const _CharT* __s, size_type __n,
+      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:533:7: note: candidate constructor not viable: no known conversion from 'int' to 'const char *' for 1st argument
+      basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:638:9: note: candidate template ignored: deduced conflicting types for parameter '_InputIterator' ('int' vs. 'const char *')
+        basic_string(_InputIterator __beg, _InputIterator __end,
+        ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:448:7: note: candidate constructor not viable: requires single argument '__a', but 2 arguments were provided
+      basic_string(const _Alloc& __a) _GLIBCXX_NOEXCEPT
+      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:456:7: note: candidate constructor not viable: requires single argument '__str', but 2 arguments were provided
+      basic_string(const basic_string& __str)
+      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:484:7: note: candidate constructor not viable: requires 3 arguments, but 2 were provided
+      basic_string(const basic_string& __str, size_type __pos,
+      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:439:7: note: candidate constructor not viable: requires 0 arguments, but 2 were provided
+      basic_string()
+      ^
+/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/bits/basic_string.h:500:7: note: candidate constructor not viable: requires 4 arguments, but 2 were provided
+      basic_string(const basic_string& __str, size_type __pos,
+      ^
+1 error generated.
+make: *** [Makefile:23: main.o] Erro 1
