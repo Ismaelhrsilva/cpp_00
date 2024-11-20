@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:37:02 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/20 17:08:03 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:47:46 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ ScavTrap::ScavTrap(ScavTrap const &other): ClapTrap(other) {
 ScavTrap &ScavTrap::operator=(ScavTrap const &other){
 	std::cout << "ScavTrap assignment constructor" << std::endl;
 	if (this != &other){
-		ClapTrap::operator=(other);
 		setName(other.getName());
 		setHitPoint(other.getHitPoint());
 		setEnergyPoint(other.getEnergyPoint());
@@ -53,7 +52,7 @@ ScavTrap::~ScavTrap(void){
 };
 
 /*
- * Constructors
+ * Member Functions
 */
 
 void	ScavTrap::attack(const std::string &target){

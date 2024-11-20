@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:37:02 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/20 17:08:03 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:44:17 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ ScavTrap::~ScavTrap(void){
 };
 
 /*
- * Constructors
+ * Member Functions 
 */
 
 void	ScavTrap::attack(const std::string &target){

@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:37:02 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/20 17:15:19 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:45:59 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,29 @@
  * Constructors
 */
 
-ScavTrap::ScavTrap(void): ClapTrap() {
-	std::cout << "ScavTrap Constructor" << std::endl;
+FragTrap::FragTrap(void): ClapTrap() {
+	std::cout << "FragTrap Constructor" << std::endl;
 	setHitPoint(100);
-	setEnergyPoint(50);
-	setAttackDamage(20);
+	setEnergyPoint(100);
+	setAttackDamage(30);
 };
 
-ScavTrap::ScavTrap(std::string const &name): ClapTrap(name) {
-	std::cout << "ScavTrap name constructor" << std::endl;
+FragTrap::FragTrap(std::string const &name): ClapTrap(name) {
+	std::cout << "FragTrap name constructor" << std::endl;
 	setName(name);
 	setHitPoint(100);
-	setEnergyPoint(50);
-	setAttackDamage(20);
+	setEnergyPoint(100);
+	setAttackDamage(30);
 };
 
-ScavTrap::ScavTrap(ScavTrap const &other): ClapTrap(other) {
-	std::cout << "ScavTrap copy constructor" << std::endl;
+FragTrap::FragTrap(FragTrap const &other): ClapTrap(other) {
+	std::cout << "FragTrap copy constructor" << std::endl;
 	*this = other;
 };
 
-ScavTrap &ScavTrap::operator=(ScavTrap const &other){
-	std::cout << "ScavTrap assignment constructor" << std::endl;
+FragTrap &FragTrap::operator=(FragTrap const &other){
+	std::cout << "FragTrap assignment constructor" << std::endl;
 	if (this != &other){
-		ClapTrap::operator=(other);
 		setName(other.getName());
 		setHitPoint(other.getHitPoint());
 		setEnergyPoint(other.getEnergyPoint());
@@ -48,27 +47,10 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &other){
 	return *this;
 };
 
-ScavTrap::~ScavTrap(void){
-	std::cout << "ScavTrap destructor" << std::endl;
+FragTrap::~FragTrap(void){
+	std::cout << "FragTrap destructor" << std::endl;
 };
 
-/*
- * Constructors
-*/
-
-void	ScavTrap::attack(const std::string &target){
-	if (getHitPoint() <= 0)
-		std::cout << "ScavTrap" << getName() << " is already dead" << std::endl;
-	else if (target.empty())
-		std::cout << "Target is empty" << std::endl;
-	else if (getEnergyPoint() > 0){
-		std::cout << "ScavTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of  damage!" << std::endl;
-		setEnergyPoint(getEnergyPoint() - 1);
-	}
-	else
-		std::cout << "ScavTrap - There are not more energy points to attack!" << std::endl;
-};
-
-void	ScavTrap::guardGate(void){
-	std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
+void	FragTrap::highFivesGuys(void){
+	std::cout << "High five request has been accepted succefully!" << std::endl;
 };

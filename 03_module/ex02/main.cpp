@@ -6,14 +6,14 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:15:37 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/20 17:15:27 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:45:39 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "FragTrap.hpp"
 
-void	ft_constructor(ScavTrap &ismael){
+void	ft_constructor(FragTrap &ismael){
 	
 
 	std::cout << "Hitpoint is " << ismael.getHitPoint() << std::endl;
@@ -55,7 +55,7 @@ void	ft_constructor(ScavTrap &ismael){
 
 int main(void){
 
-	ScavTrap ismael;
+	FragTrap ismael;
 
 	std::cout << "Name is " << ismael.getName() << std::endl;
 	ismael.setName("ismael");
@@ -64,20 +64,20 @@ int main(void){
 
 	ft_constructor(ismael);
 	
-	ScavTrap acsa("acsa");
+	FragTrap acsa("acsa");
 	ft_constructor(acsa);
 
-	ScavTrap a(ismael);
+	FragTrap a(ismael);
 	ft_constructor(a);
 	
-	ScavTrap b;
+	FragTrap b;
 	b = acsa;
 	ft_constructor(b);
 
-	ismael.guardGate();
-	acsa.guardGate();
-	a.guardGate();
-	b.guardGate();
+	ismael.highFivesGuys();
+	acsa.highFivesGuys();
+	a.highFivesGuys();
+	b.highFivesGuys();
 
 	return 0;
 }
