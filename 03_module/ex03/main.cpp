@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:15:37 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/20 18:39:35 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:44:45 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,14 @@ int main(void){
 	acsa.highFivesGuys();
 	a.highFivesGuys();
 	b.highFivesGuys();
+
+	ismael.setEnergyPoint(1);
+	acsa.setEnergyPoint(1);
+
+	ismael.attack("samuel");
+	acsa.attack("samuel");
+	a.attack("samuel");
+	b.attack("samuel");
 
 	ismael.whoAmI();
 	acsa.whoAmI();
