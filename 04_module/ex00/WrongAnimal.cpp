@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongWrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 14:54:16 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/23 16:11:16 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:15:25 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 
-Animal::Animal( void ){
+WrongAnimal::WrongAnimal( void ){
 
-	_type = "Animal";
-	std::cout << "Animal default constructor called" << std::endl;
+	_type = "WrongAnimal";
+	std::cout << "WrongAnimal default constructor called" << std::endl;
 }
 
-Animal::~Animal( void ){
+WrongAnimal::~WrongAnimal( void ){
 
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
-Animal::Animal( const Animal &other ){
+WrongAnimal::WrongAnimal( const WrongAnimal &other ){
 
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
 	*this = other;
 }
 
-Animal	&Animal::operator=( const Animal &other ){
+WrongAnimal	&WrongAnimal::operator=( const WrongAnimal &other ){
 
-	std::cout << "Animal copy assignment operator called";
+	std::cout << "WrongAnimal copy assignment operator called";
 
 	if (this != &other){
 		_type = other._type;
@@ -40,12 +40,12 @@ Animal	&Animal::operator=( const Animal &other ){
 	return *this;
 }
 
-const	std::string Animal::getType( void ) const{
+const	std::string WrongAnimal::getType( void ) const{
 	
 	return _type;
 }
 
-void	Animal::makeSound( void ) const{
+void	WrongAnimal::makeSound( void ) const{
 
-	std::cout << "Animal sound" << std::endl;
+	std::cout << "WrongAnimal sound" << std::endl;
 }

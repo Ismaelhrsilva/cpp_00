@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 14:54:24 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/23 16:10:24 by ishenriq         ###   ########.fr       */
+/*   Created: 2024/11/23 15:27:44 by ishenriq          #+#    #+#             */
+/*   Updated: 2024/11/23 16:22:25 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
 # include <string>
 # include <iostream>
+# include "WrongAnimal.hpp"
 
-class Animal {
+class WrongCat: public WrongAnimal {
 
-  protected:
-    std::string _type;
+	public:
+		WrongCat( void );
+		~WrongCat( void );
+		WrongCat( const WrongCat &other );
+		WrongCat	&operator=( const WrongCat &other );
 
-  public:
-	Animal( void );
-	virtual ~Animal( void );
-	Animal( const Animal &other );
-	Animal &operator=( Animal const &other );
+		void	makeSound( void ) const;
 
-	const	std::string getType( void ) const;
-	virtual void	makeSound( void ) const;
 };
 
-#endif // !ANIMAL_HPP
+#endif // !CAT_HPP
