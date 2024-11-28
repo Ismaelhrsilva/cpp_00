@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/27 19:46:35 by ishenriq          #+#    #+#             */
+/*   Updated: 2024/11/27 20:22:26 by ishenriq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
@@ -8,20 +20,20 @@
 class Bureaucrat {
 
   private:
-	static const unsigned int MAX = 1;
-	static const unsigned int MIN = 150;
+	static const  int MAX = 1;
+	static const  int MIN = 150;
 	const std::string _name;
-	unsigned int  _grade;
+	int  _grade;
 
   public:
 	Bureaucrat(void);
 	~Bureaucrat(void);
-	Bureaucrat(const std::string name, unsigned int grade);
+	Bureaucrat(const std::string name,  int grade);
 	Bureaucrat( const Bureaucrat &other);
 	Bureaucrat &operator=(const Bureaucrat &other);
 
 	std::string	getName(void) const;
-	unsigned int getGrade(void) const;
+	int getGrade(void) const;
 
 	void  incrementGrade(void);
 	void  decrementGrade(void);
@@ -37,6 +49,6 @@ class Bureaucrat {
 	};
 };
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &Br) const;
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &Br);
 
 #endif
