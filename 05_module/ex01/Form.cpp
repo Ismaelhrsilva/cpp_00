@@ -6,28 +6,38 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 17:52:27 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/30 18:38:33 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:36:47 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(void){
+Form::Form(void)
+	: _name(""),
+	_gradeToSign(0),
+	_gradeToExecute(0)
+{
 
 	std::cout << "Form default constructor called" << std::endl;
+
+	_signed = false;
 
 	throw GradeTooHighException();
 }
 
-Form::Form(const std::string name, const int gradeToSign, const gradeToExecute)
-	: _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+Form::Form(const std::string name, const int gradeToSign, const int gradeToExecute)
+	: _name(name),
+	_gradeToSign(gradeToSign),
+	_gradeToExecute(gradeToExecute)
 {
 	std::cout << "Form name constructor called" << std::endl;
 
-	if (gradeToSign < MIN || gradeToExecute < MIN)
-		throw GradeTooHighException();
-	if (gradeToSign > MAX || gradeToExecute > MAX)
+	if (gradeToSign > MIN || gradeToExecute > MIN)
 		throw GradeTooLowException();
+	if (gradeToSign < MAX || gradeToExecute < MAX)
+		throw GradeTooHighException();
+
+	_signed = false;
 }
 
 Form::~Form(void){
@@ -57,10 +67,10 @@ int	Form::getSigned(void) const { return _signed; }
 int	Form::getGradeToSign(void) const { return _gradeToSign; }
 int	Form::getToExecute(void) const { return _gradeToExecute; }
 
-void beSigned(Bureaucrat &Br){
+void Form::beSigned(Bureaucrat &Br){
 
 	if(Br.getGrade() > _gradeToSign)
-		throw GradeTooLowException();
+		throw Form::GradeTooLowException();
 	_signed = true;
 }
 

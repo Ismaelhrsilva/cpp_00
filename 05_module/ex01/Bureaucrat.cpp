@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:30:12 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/30 18:45:51 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:29:21 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void  Bureaucrat::decrementGrade(void){
 	_grade++;
 }
 
-void signForm(Form &Fr){
+void Bureaucrat::signForm(Form &Fr){
 
 	try {
 		Fr.beSigned(*this);

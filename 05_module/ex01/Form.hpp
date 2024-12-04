@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 17:22:20 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/11/30 18:31:11 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:14:25 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <string>
 # include <iostream>
 # include <exception>
+# include "Bureaucrat.hpp"
 
+class Bureaucrat;
 
 class Form {
 
@@ -31,7 +33,7 @@ class Form {
 
 	public:
 		Form(void);
-		Form(const std::string name, const int gradeToSign, const gradeToExecute);
+		Form(const std::string name, const int gradeToSign, const int gradeToExecute);
 		~Form(void);
 		Form(const Form &other);
 		Form &operator=(const Form &other);
@@ -43,12 +45,12 @@ class Form {
 
 		void beSigned(Bureaucrat &Br);
 
-		class GradeTooHighException: public exception {
+		class GradeTooHighException: public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
 
-		class GradeTooLowException: public exception {
+		class GradeTooLowException: public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
