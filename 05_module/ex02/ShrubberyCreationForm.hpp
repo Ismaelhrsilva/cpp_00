@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 20:36:59 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/12/13 21:00:15 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:28:21 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 # include <string>
 # include <iostream>
-# include <exception>
-
-class AForm;
+# include "AForm.hpp"
 
 class ShrubberyCreationForm: public AForm {
 

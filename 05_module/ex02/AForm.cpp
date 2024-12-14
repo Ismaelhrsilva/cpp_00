@@ -6,11 +6,12 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 17:52:27 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/12/13 20:27:48 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:32:50 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 AForm::AForm(void)
 	: _name(""),
@@ -78,8 +79,8 @@ void AForm::execute(Bureaucrat const &executor) const {
 
 	if (not this->getSigned())
 		throw AForm::FormNotSignedException();
-	if (executor.gradeToExecute() > this->_gradeToExecute)
-		thow GradeTooLowException();
+	if (executor.getGrade() > this->_gradeToExecute)
+		throw GradeTooLowException();
 
 	this->executeTask();
 }
@@ -93,7 +94,7 @@ const char *AForm::GradeTooLowException::what() const throw() {
 }
 
 const char *AForm::FormNotSignedException::what() const throw() {
-	return "AForm: Is not signed"
+	return "AForm: Is not signed";
 }
 
 std::ostream &operator<<(std::ostream& os, const AForm &Fr){

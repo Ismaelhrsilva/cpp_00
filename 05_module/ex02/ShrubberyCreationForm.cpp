@@ -6,19 +6,16 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 20:56:35 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/12/13 21:08:37 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:27:20 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-		static const int GRADE_SIGN = 145;
-		static const int GRADE_EXEC = 137;
-
 ShrubberyCreationForm::ShrubberyCreationForm(void)
 	: AForm("ShrubberyCreationForm", GRADE_SIGN, GRADE_EXEC),
-	  _target("");
+	  _target("")
 {
 
 	std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
@@ -26,7 +23,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(void)
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target)
 	: AForm("ShrubberyCreationForm", GRADE_SIGN, GRADE_EXEC),
-	  _target(target);
+	  _target(target)
 {
 
 	std::cout << "ShrubberyCreationForm name constructor called" << std::endl;
@@ -39,7 +36,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void){
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
 	: AForm("ShrubberyCreationForm", GRADE_SIGN, GRADE_EXEC),
-	  _target(other.target);
+	  _target(other._target)
 {
 	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
 
@@ -50,6 +47,8 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 	std:: cout << "ShrubberyCreationForm copy assignment operator called" << std::endl;
 
+	if (this  == &other)
+		return *this;
 	return *this;
 }
 

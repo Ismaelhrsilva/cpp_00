@@ -6,13 +6,12 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 17:22:20 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/12/13 20:45:52 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:28:51 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AFORM_HPP
 # define AFORM_HPP
-
 
 # include <string>
 # include <iostream>
@@ -59,7 +58,7 @@ class AForm {
 				virtual const char *what() const throw();
 		};
 
-		Class FormNotSignedException: public std::exception {
+		class FormNotSignedException: public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};

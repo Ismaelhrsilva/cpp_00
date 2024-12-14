@@ -6,35 +6,33 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 20:36:59 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/12/13 21:09:16 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:33:05 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 # include <string>
 # include <iostream>
-# include <exception>
+# include "AForm.hpp"
 
-class AForm;
-
-class ShrubberyCreationForm: public AForm {
+class RobotomyRequestForm: public AForm {
 
 	private:
-		static const int GRADE_SIGN = 145;
-		static const int GRADE_EXEC = 137;
+		static const int GRADE_SIGN = 72;
+		static const int GRADE_EXEC = 45;
 		const std::string _target;
 
 	protected:
 		void executeTask(void) const;
 
 	public:
-		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const std::string target);
-		~ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const ShrubberyCreationForm &other);
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
+		RobotomyRequestForm(void);
+		RobotomyRequestForm(const std::string target);
+		~RobotomyRequestForm(void);
+		RobotomyRequestForm(const RobotomyRequestForm &other);
+		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
 
 };
 

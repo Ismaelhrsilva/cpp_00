@@ -6,11 +6,12 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:30:12 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/12/13 20:35:54 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/14 19:48:44 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void): _name(""), _grade(0) {
 
@@ -79,9 +80,9 @@ void Bureaucrat::signForm(AForm &Fr){
 
 	try {
 		Fr.beSigned(*this);
-		std::cout << "Bureaucrat " << _name << "signed " << Fr.getName() << std::endl; 
+		std::cout << "Bureaucrat " << _name << " signed " << Fr.getName() << std::endl; 
 	} catch (std::exception &e){
-		std::cerr << "Bureaucrat " << _name << "couldn't sign"
+		std::cerr << "Bureaucrat " << _name << " couldn't sign "
 					<< Fr.getName() << std::endl;
 	}
 }
@@ -90,10 +91,10 @@ void Bureaucrat::executeForm(const AForm &form){
 
 	try {
 		form.execute(*this);
-		std::cout << "Bureaucrat " << _name << "executed" << Fr.getName() << std::endl; 
+		std::cout << "Bureaucrat " << _name << " executed " << form.getName() << std::endl; 
 	} catch (std::exception &e){
-		std::cerr << "Bureaucrat " << _name << "couldn't execute"
-					<< Fr.getName() << std::endl;
+		std::cerr << "Bureaucrat " << _name << " couldn't execute "
+					<< form.getName() << std::endl;
 	}
 }
 
