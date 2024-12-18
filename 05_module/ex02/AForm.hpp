@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 17:22:20 by ishenriq          #+#    #+#             */
-/*   Updated: 2024/12/14 19:28:51 by ishenriq         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:02:53 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class AForm {
 	public:
 		AForm(void);
 		AForm(const std::string name, const int gradeToSign, const int gradeToExecute);
-		~AForm(void);
+		virtual ~AForm(void);
 		AForm(const AForm &other);
 		AForm &operator=(const AForm &other);
 
