@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 18:00:39 by ishenriq          #+#    #+#             */
-/*   Updated: 2025/04/11 19:40:21 by ishenriq         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:51:33 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,17 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other){
 
 void ScalarConverter::Converter(const std::string input){
 
-	
+	if (input.size() == 1 && !std::isdigit(input[0])){
+		char c = input[0];
+
+		std::cout << "char: " << c << std::endl;
+		std::cout << "int :" << static_cast<int>(c) << std::endl;
+		std::cout << "float :" << std::fixed << std::setprecision(1)
+			<< static_cast<float>(c) << "f" << std::endl;
+		std::cout << "double :" << static_cast<double>(c) << std::endl;
+		return ;
+	}
+
 
 	std::cout << "char: " << input << std::endl;
 	std::cout << "int: " << input << std::endl;
