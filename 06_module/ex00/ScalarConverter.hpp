@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 18:00:34 by ishenriq          #+#    #+#             */
-/*   Updated: 2025/04/11 19:23:49 by ishenriq         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:39:45 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ private:
 	ScalarConverter &operator=(const ScalarConverter &other);
 
 public:
-	static void Convert(std::string input);
+	static void Converter(const std::string input);
 };
 
 #endif
