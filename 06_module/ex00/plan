@@ -1,0 +1,29 @@
+i'll got a string as 
+
+42.0fabc
+
+So, the first thing is to see if there is base cenarios like
+
+char:
+only a character and 1 lenght
+
+int:
+Is not a char and there is not '.' in it.
+
+Float:
+Is not a char and there is a '.' and something after '.' and finalize with 'f'
+
+Double:
+is like a float, but there is not a 'f'
+
+So, you can do a if else sentences to filter each case...
+
+After that, you need to see if the input (char, int, float or double)
+	is on its limits (char_limits, int_limits, float_limits or double_limits)
+	if the input is char, but falls outter of limits my programn must raise a error called impossible....
+
+Finally there are some words as -inff, +inff and nanf...
+and i dont know yet how it behaves... 
+
+And i dont know too why '0' raise a text called Non displayable...
+And i dont know too if others values raise the same text...

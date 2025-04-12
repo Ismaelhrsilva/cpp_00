@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 18:00:34 by ishenriq          #+#    #+#             */
-/*   Updated: 2025/04/12 15:55:53 by ishenriq         ###   ########.fr       */
+/*   Updated: 2025/04/12 18:44:16 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <iomanip>
 # include <cstdlib>
 # include <cstring>
+# include <limits>
+# include <cctype>
 
 
 class ScalarConverter{
