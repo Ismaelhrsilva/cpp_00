@@ -15,7 +15,7 @@ CFLAGS				= -Wall -Wextra -Werror -std=c++98
 all: 				$(NAME)
 
 $(NAME):			$(OBJS)
-					@$(COMPILER) $(CFLAGS) $(OBJS) -o $(NAME)
+					@$(COMPILER) $(CFLAGS) $(OBJS) -no-pie -o $(NAME)
 					@echo "$(BLUE)Compiled $(NAME) successfully$(RESET)"
 
 %.o:				%.cpp

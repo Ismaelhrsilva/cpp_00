@@ -27,56 +27,74 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other){
 	return *this;
 }
 
-static void printChar(double n){
+static void printChar(double n, bool ok){
 
-	if (n < std::numeric_limits<char>::min() || n > std::numeric_limits<char>::max())
+	if (not ok || n < std::numeric_limits<char>::min() || n > std::numeric_limits<char>::max()
+		|| std::isnan(n) || std::isinf(n))
 		std::cout << "char: impossible" << std::endl;
-	else if (!isprint(static_cast<char>(n)))
+	else if (not std::isprint(static_cast<char>(n)))
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(n) << "'"<< std::endl;
-	return ;
 }
 
-static void printInt(double n){
+static void printInt(double n, bool ok){
 
-	std::cout << "int: " << static_cast<int>(n) << std::endl;
-	return ;
+	if (not ok || n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max()
+		|| std::isnan(n) || std::isinf(n))
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(n) << std::endl;
 }
 
-static void printFloat(double n){
+static void printFloat(double n, bool ok, bool signal){
 
-	std::cout << "float: " << std::fixed << std::setprecision(1)
+	if ((ok && n >= std::numeric_limits<float>::min() && n <= std::numeric_limits<float>::max())
+		|| std::isnan(n) || std::isinf(n))
+	  std::cout << "float: " << (signal ? "+": "") <<std::fixed << std::setprecision(1)
 		<< static_cast<float>(n) << "f" << std::endl;
-	return ;
+	else
+		std::cout << "float: impossible" << std::endl;
 }
 
-static void printDouble(double n){
+static void printDouble(double n, bool ok, bool signal){
 
-	std::cout << "double: " << static_cast<double>(n) << std::endl;
-	return ;
+	if ((ok && n >= std::numeric_limits<double>::min() && n <= std::numeric_limits<double>::max())
+		|| std::isnan(n) || std::isinf(n))
+		std::cout << "double: " << (signal ? "+": "") << static_cast<double>(n) << std::endl;
+	else
+		std::cout << "double: impossible" << std::endl;
 }
 
 
 void ScalarConverter::Converter(const std::string input){
 
-	char *final;
+	char *final = NULL;
+	bool ok = true;
+	bool signal = false;
 	double n = std::strtod(input.c_str(), &final);
 
 	if (input.size() == 1 && !std::isdigit(input[0])){
-		n = static_cast<char>(input[0]);
-	} else if (*final != '\0' && final[0] == 'f' && std::strlen(final) == 1){
+		n = static_cast<char>(input.at(0));
+	} else if ((final[0] == 'f' && std::strlen(final) == 1
+		&& static_cast<ssize_t>(input.find(".")) != -1) || input == "-inff"
+		|| input == "+inff" || input == "inff" || input == "nanf"){
 		n = std::strtof(input.c_str(), NULL);
-	} else if (*final != '\0' && input.size() && input.find(".")){
+	} else if ((not std::strlen(final) && input.size() && input.find("."))
+		|| input == "-inf" || input == "inf" || input == "+inf" || input == "nan"){
 		n = std::strtod(input.c_str(), NULL);
-	} else if (*final == '\0' && static_cast<ssize_t>(input.find_last_not_of("-+0123456789") == -1)){
+	} else if (not std::strlen(final) && not std::isnan(n) && not std::isinf(n)
+		&& input.find_last_not_of("-+0123456789") == std::string::npos){
 		n = std::atoi(input.c_str());
 	} else {
-		std::cout << "não sei que caso é esse" << std::endl;
+		ok = false;
+	}
+	if (input == "+inff" || input == "+inf"){
+	  signal = true;
 	}
 
-	printChar(n);
-	printInt(n);
-	printFloat(n);
-	printDouble(n);
+	printChar(n, ok);
+	printInt(n, ok);
+	printFloat(n, ok, signal);
+	printDouble(n, ok, signal);
 }

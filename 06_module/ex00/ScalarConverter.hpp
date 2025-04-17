@@ -20,6 +20,7 @@
 # include <cstring>
 # include <limits>
 # include <cctype>
+# include <cmath>
 
 
 class ScalarConverter{
