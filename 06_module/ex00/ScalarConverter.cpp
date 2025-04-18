@@ -27,74 +27,89 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other){
 	return *this;
 }
 
-static void printChar(double n, bool ok){
 
-	if (not ok || n < std::numeric_limits<char>::min() || n > std::numeric_limits<char>::max()
-		|| std::isnan(n) || std::isinf(n))
+static bool isSpecialLiteral(const std::string& input, double& value, std::string& pseudoStr) {
+	if (input == "nan" || input == "nanf") {
+		value = std::numeric_limits<double>::quiet_NaN();
+		pseudoStr = "nan";
+		return true;
+	}
+	if (input == "+inf" || input == "+inff") {
+		value = std::numeric_limits<double>::infinity();
+		pseudoStr = "+inf";
+		return true;
+	}
+	if (input == "-inf" || input == "-inff") {
+		value = -std::numeric_limits<double>::infinity();
+		pseudoStr = "-inf";
+		return true;
+	}
+	return false;
+}
+
+static bool isDisplayableChar(double value) {
+	char c = static_cast<char>(value);
+	return value >= 0 && value <= 127 && std::isprint(c);
+}
+
+static bool isInteger(double value) {
+	return value == static_cast<int>(value);
+}
+
+static void printConversions(double value, bool isPseudo, const std::string& pseudoStr) {
+	if (isPseudo || value < 0 || value > 127  || !isInteger(value))
 		std::cout << "char: impossible" << std::endl;
-	else if (not std::isprint(static_cast<char>(n)))
+	else if (!isDisplayableChar(value))
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: '" << static_cast<char>(n) << "'"<< std::endl;
-}
+		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
 
-static void printInt(double n, bool ok){
-
-	if (not ok || n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max()
-		|| std::isnan(n) || std::isinf(n))
+	if (isPseudo || value < INT_MIN || value > INT_MAX)
 		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(n) << std::endl;
-}
+		std::cout << "int: " << static_cast<int>(value) << std::endl;
 
-static void printFloat(double n, bool ok, bool signal){
-
-	if ((ok && n >= std::numeric_limits<float>::min() && n <= std::numeric_limits<float>::max())
-		|| std::isnan(n) || std::isinf(n))
-	  std::cout << "float: " << (signal ? "+": "") <<std::fixed << std::setprecision(1)
-		<< static_cast<float>(n) << "f" << std::endl;
+	std::cout << "float: ";
+	if (isPseudo)
+		std::cout << pseudoStr << "f" << std::endl;
 	else
-		std::cout << "float: impossible" << std::endl;
-}
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 
-static void printDouble(double n, bool ok, bool signal){
-
-	if ((ok && n >= std::numeric_limits<double>::min() && n <= std::numeric_limits<double>::max())
-		|| std::isnan(n) || std::isinf(n))
-		std::cout << "double: " << (signal ? "+": "") << static_cast<double>(n) << std::endl;
+	std::cout << "double: ";
+	if (isPseudo)
+		std::cout << pseudoStr << std::endl;
 	else
-		std::cout << "double: impossible" << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << value << std::endl;
 }
 
+void ScalarConverter::convert(const std::string& input) {
+	double value = 0.0;
+	bool isPseudo = false;
+	std::string pseudoStr;
 
-void ScalarConverter::Converter(const std::string input){
-
-	char *final = NULL;
-	bool ok = true;
-	bool signal = false;
-	double n = std::strtod(input.c_str(), &final);
-
-	if (input.size() == 1 && !std::isdigit(input[0])){
-		n = static_cast<char>(input.at(0));
-	} else if ((final[0] == 'f' && std::strlen(final) == 1
-		&& static_cast<ssize_t>(input.find(".")) != -1) || input == "-inff"
-		|| input == "+inff" || input == "inff" || input == "nanf"){
-		n = std::strtof(input.c_str(), NULL);
-	} else if ((not std::strlen(final) && input.size() && input.find("."))
-		|| input == "-inf" || input == "inf" || input == "+inf" || input == "nan"){
-		n = std::strtod(input.c_str(), NULL);
-	} else if (not std::strlen(final) && not std::isnan(n) && not std::isinf(n)
-		&& input.find_last_not_of("-+0123456789") == std::string::npos){
-		n = std::atoi(input.c_str());
-	} else {
-		ok = false;
+	if (input.length() == 1 && !std::isdigit(input[0])) {
+		value = static_cast<double>(input[0]);
 	}
-	if (input == "+inff" || input == "+inf"){
-	  signal = true;
+	else if (isSpecialLiteral(input, value, pseudoStr)) {
+		isPseudo = true;
+	}
+	else {
+		std::string trimmed = input;
+		if (input.length() > 1 && input[input.length() - 1] == 'f')
+			trimmed = input.substr(0, input.length() - 1);
+
+		std::istringstream ss(trimmed);
+		ss >> value;
+
+		if (ss.fail() || !ss.eof()) {
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: impossible" << std::endl;
+			std::cout << "double: impossible" << std::endl;
+			return;
+		}
 	}
 
-	printChar(n, ok);
-	printInt(n, ok);
-	printFloat(n, ok, signal);
-	printDouble(n, ok, signal);
+	printConversions(value, isPseudo, pseudoStr);
 }
+

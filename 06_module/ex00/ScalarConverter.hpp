@@ -19,8 +19,12 @@
 # include <cstdlib>
 # include <cstring>
 # include <limits>
+# include <climits>
+# include <cfloat>
 # include <cctype>
 # include <cmath>
+
+# include <sstream>
 
 
 class ScalarConverter{
@@ -32,7 +36,7 @@ private:
 	ScalarConverter &operator=(const ScalarConverter &other);
 
 public:
-	static void Converter(const std::string input);
+	static void convert(const std::string &input);
 };
 
 #endif
