@@ -1,9 +1,5 @@
 #include "Data.hpp"
 
-
-
-
-
 Data::Data(void){}
 
 Data::~Data(void){}
