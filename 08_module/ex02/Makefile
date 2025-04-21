@@ -5,7 +5,7 @@ BLUE				= $(shell tput setaf 4)
 MAGENT				= $(shell tput setaf 5)
 RESET				= $(shell tput sgr0)
 
-NAME				= x
+NAME				= mutated_abomination
 INCLUDES 			= -I
 FILES				= $(wildcard *.cpp)
 OBJS				= $(FILES:%.cpp=%.o)
