@@ -22,7 +22,8 @@
 class Bitcoin{
 
 private:
-	std::map<std::string, float> _exchangeRates;
+	std::map<std::string, float> _dataBase;
+	std::map<std::string, float> _input;
 
 public:
 	Bitcoin(void);
@@ -31,6 +32,7 @@ public:
 	Bitcoin &operator=(const Bitcoin &other);
 
 	void loadDataBase(const std::string &filename);
+	void loadInput(const std::string &filename);
 	void printBase(void);
 
 };
