@@ -14,7 +14,7 @@ class Array {
 	unsigned int _size;
 
   public:
-	Array();                                
+	Array();
 	Array(unsigned int n);
 	Array(const Array& other);
 	Array& operator=(const Array& other);

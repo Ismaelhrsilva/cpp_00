@@ -1,53 +1,59 @@
 #include <iostream>
 #include "Array.hpp"
-
 #define MAX_VAL 750
-int main(int, char**)
-{
+
+
+int main(int, char**) {
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++)
-    {
+
+    std::cout << "Filling both arrays with random values..." << std::endl;
+    for (int i = 0; i < MAX_VAL; i++) {
         const int value = rand();
         numbers[i] = value;
         mirror[i] = value;
     }
-    //SCOPE
+
+    std::cout << "Testing deep copy..." << std::endl;
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
+        std::cout << "Temporary objects copied successfully." << std::endl;
     }
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
+    std::cout << "Comparing original array with mirror..." << std::endl;
+    for (int i = 0; i < MAX_VAL; i++) {
+        if (mirror[i] != numbers[i]) {
+            std::cerr << "Error: Value mismatch at index " << i << std::endl;
             return 1;
         }
     }
-    try
-    {
+    std::cout << "All values match. Deep copy is valid." << std::endl;
+
+    std::cout << "Testing negative index access..." << std::endl;
+    try {
         numbers[-2] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
+    std::cout << "Testing out-of-bounds access..." << std::endl;
+    try {
+        numbers[MAX_VAL] = 0;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+
+    std::cout << "Overwriting all array elements..." << std::endl;
+    for (int i = 0; i < MAX_VAL; i++) {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+
+    std::cout << "Cleaning up mirror array memory." << std::endl;
+    delete[] mirror;
+
+    std::cout << "All tests completed successfully." << std::endl;
     return 0;
 }
+
