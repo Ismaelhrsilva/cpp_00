@@ -23,7 +23,6 @@ class Bitcoin{
 
 private:
 	std::map<std::string, float> _dataBase;
-	std::map<std::string, float> _input;
 
 public:
 	Bitcoin(void);

@@ -23,8 +23,6 @@ int main(int argc, char **argv){
 
 	Bitcoin btc;
   btc.loadInput(argv[1]);
-	btc.printBase();
-
 
 	return (0);
 }
