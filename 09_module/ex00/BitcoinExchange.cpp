@@ -12,6 +12,12 @@
 
 #include "BitcoinExchange.hpp"
 
+enum FloatValidationResult {
+  FLOAT_OK,
+  FLOAT_BAD_FORMAT,
+  FLOAT_NEGATIVE,
+  FLOAT_TOO_LARGE
+};
 
 Bitcoin::Bitcoin(void){
   loadDataBase("./data.csv");
@@ -20,35 +26,35 @@ Bitcoin::Bitcoin(void){
 Bitcoin::~Bitcoin(void){}
 
 Bitcoin::Bitcoin(const Bitcoin &other){
-	*this = other;
+  *this = other;
 }
 
 Bitcoin &Bitcoin::operator=(const Bitcoin &other){
-	if (this != &other){
+  if (this != &other){
     this->_dataBase = other._dataBase;
   }
-	return *this;
+  return *this;
 }
 
 void Bitcoin::loadDataBase(const std::string &filename){
 
-	std::ifstream file(filename.c_str());
-	std::string line;
-	std::getline(file, line);
+  std::ifstream file(filename.c_str());
+  std::string line;
+  std::getline(file, line);
 
-	while(std::getline(file, line)){
-		std::stringstream ss(line);
-		std::string date, valueStr;
+  while(std::getline(file, line)){
+    std::stringstream ss(line);
+    std::string date, valueStr;
 
-		std::getline(ss, date, ',');
-		std::getline(ss, valueStr);
+    std::getline(ss, date, ',');
+    std::getline(ss, valueStr);
 
-		std::stringstream converter(valueStr);
-		float value;
-		converter >> value;
+    std::stringstream converter(valueStr);
+    float value;
+    converter >> value;
 
-		_dataBase[date] = value;
-	}
+    _dataBase[date] = value;
+  }
 }
 
 
@@ -77,19 +83,55 @@ static bool isValidDateFormat(const std::string &date){
   return true;
 }
 
+static bool isRealDate(const std::string &date){
+  int year, month, day;
+  if (sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3)
+    return false;
+  if (month < 1 || month > 12 || day < 1 || day > 31)
+    return false;
+
+  static const int daysInMonth[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  if (month == 2){
+    bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    if (day > (leap ? 29 : 28))
+      return false;
+  } else {
+    if (day > daysInMonth[month - 1])
+      return false;
+  }
+  return true;
+}
+
+static FloatValidationResult checkFloatValue(const std::string &valueStr, float &valueOut) {
+  char *endPtr = NULL;
+  const char *cstr = valueStr.c_str();
+
+  valueOut = strtof(cstr, &endPtr);
+  if (*endPtr != '\0')
+    return FLOAT_BAD_FORMAT;
+  if (valueOut < 0.0f)
+    return FLOAT_NEGATIVE;
+  if (valueOut > 1000.f)
+    return FLOAT_TOO_LARGE;
+  return FLOAT_OK;
+}
 
 void Bitcoin::loadInput(const std::string &filename){
 
-	std::ifstream file(filename.c_str());
-	std::string line;
-	std::getline(file, line);
+  std::ifstream file(filename.c_str());
+  std::string line;
+  std::getline(file, line);
 
-	while(std::getline(file, line)){
-		std::stringstream ss(line);
-		std::string date, valueStr;
+  while(std::getline(file, line)){
+    std::stringstream ss(line);
+    std::string date, valueStr;
 
-		std::getline(ss, date, '|');
-		std::getline(ss, valueStr);
+    if (std::count(line.begin(), line.end(), '|') != 1){
+      std::cout << "Error: bad input => " << line << std::endl;
+      continue;
+    }
+    std::getline(ss, date, '|');
+    std::getline(ss, valueStr);
 
     date = trim(date);
     valueStr = trim(valueStr);
@@ -99,6 +141,12 @@ void Bitcoin::loadInput(const std::string &filename){
       continue;
     }
 
+    if (!isRealDate(date)){
+      std::cout << "Error: bad input => " << date << std::endl;
+      continue;
+    }
+
+
     std::map<std::string, float>::const_iterator it = _dataBase.lower_bound(date);
     if (it != _dataBase.end() && it->first != date){
       if (it != _dataBase.begin()){
@@ -107,23 +155,31 @@ void Bitcoin::loadInput(const std::string &filename){
         std::cout << "Error: no valid earlier date for =>" << date << std::endl;
         continue;
       }
-	  }
+    }
     if (it == _dataBase.end()){
       std::cout << "Error: no valid date found for =>" << date << std::endl;
       continue;
     }
-    std::stringstream converter(valueStr);
-		float value;
-		converter >> value;
 
-    if (value < 0){
-       std::cout << "Error: not a positive number" << std::endl;
+    float value;
+    FloatValidationResult result = checkFloatValue(valueStr, value);
+    if (result != FLOAT_OK) {
+      switch (result) {
+        case FLOAT_BAD_FORMAT:
+          std::cout << "Error: bad input => " << valueStr << std::endl;
+          break;
+        case FLOAT_NEGATIVE:
+          std::cout << "Error: not a positive number." << std::endl;
+          break;
+        case FLOAT_TOO_LARGE:
+          std::cout << "Error: too large a number." << std::endl;
+          break;
+        default:
+          break;
+      }
       continue;
-    } else if (value > 1000){
-      continue;
-      std::cout << "Error: too larde number" << std::endl;
     }
 
     std::cout << date << " => " << value << " = " << value * it->second << std::endl;
-}
+  }
 }
