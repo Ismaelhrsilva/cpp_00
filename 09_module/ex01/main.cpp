@@ -4,7 +4,7 @@
 int main(int argc, char **argv){
 
   if(argc != 2){
-    std::cerr << "Error: only one argument" << std::endl;
+    std::cout << "Error: only one argument" << std::endl;
     return 1;
   }
 
@@ -15,7 +15,7 @@ int main(int argc, char **argv){
     std::cout << result << std::endl;
   }
   catch (const std::exception& e) {
-    std::cerr << "Error" << std::endl;
+    std::cout << "Error" << std::endl;
     return 1;
   }
 
