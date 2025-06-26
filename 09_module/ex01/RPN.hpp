@@ -4,13 +4,13 @@
 
 # include <string>
 # include <iostream>
-# include <deque>
-
-
+# include <stack>
+# include <sstream>
+# include <stdexcept>
+# include <cstdlib>
 
 class Polish{
   private:
-    deque _args;
 
   public:
     Polish(void);
