@@ -9,6 +9,7 @@
 # include <set>
 # include <stdexcept>
 # include <algorithm>
+# include <ctime>
 # include <climits>
 
 class PmergeMe {
