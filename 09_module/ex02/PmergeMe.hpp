@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/19 18:07:58 by ishenriq          #+#    #+#             */
+/*   Updated: 2025/07/19 18:28:40 by ishenriq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP 
 
@@ -19,7 +31,7 @@ class PmergeMe {
 
     void parseInput(int argc, char **argv);
     void print(std::string str) const;
-    //void sortAndMeasure(void);
+    void sortAndMeasure(void);
 
   public:
     PmergeMe(void);
