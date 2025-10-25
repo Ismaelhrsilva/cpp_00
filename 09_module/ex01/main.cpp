@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/25 13:17:31 by ishenriq          #+#    #+#             */
+/*   Updated: 2025/10/25 13:17:33 by ishenriq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RPN.hpp"
 
 
 int main(int argc, char **argv){
 
   if(argc != 2){
-    std::cout << "Error: only one argument" << std::endl;
+    std::cerr << "Error" << std::endl;
     return 1;
   }
 
@@ -15,7 +27,7 @@ int main(int argc, char **argv){
     std::cout << result << std::endl;
   }
   catch (const std::exception& e) {
-    std::cout << "Error" << std::endl;
+    std::cerr << "Error" << std::endl;
     return 1;
   }
 

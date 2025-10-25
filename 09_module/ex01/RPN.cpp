@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   RPN.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/25 13:17:42 by ishenriq          #+#    #+#             */
+/*   Updated: 2025/10/25 13:17:44 by ishenriq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RPN.hpp"
 
 
@@ -20,10 +32,10 @@ int Polish::evaluate(const std::string &expression){
   for (size_t i =0; i < expression.size(); ++i){
     char c = expression[i];
 
-    if (std::isspace(c))
+    if (std::isspace(static_cast<unsigned char>(c)))
       continue;
 
-    if (std::isdigit(c)){
+    if (std::isdigit(static_cast<unsigned char>(c))){
       stack.push(c - '0');
     } else if ( c=='+' || c == '-' || c == '*' || c == '/'){
       if (stack.size()< 2)
