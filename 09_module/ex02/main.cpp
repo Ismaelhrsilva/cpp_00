@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 18:07:54 by ishenriq          #+#    #+#             */
-/*   Updated: 2025/07/19 18:28:43 by ishenriq         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:00:27 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main (int argc, char *argv[]) {
   if (argc < 2){
-    std::cerr << "Error: at least on number is required." << std::endl;
+    std::cerr << "Error" << std::endl;
     return 1;
   }
 

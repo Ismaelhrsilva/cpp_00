@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 18:08:05 by ishenriq          #+#    #+#             */
-/*   Updated: 2025/09/20 18:50:27 by ishenriq         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:09:20 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "PmergeMe.hpp"
@@ -213,11 +213,11 @@ void PmergeMe::parseInput(int argc, char **argv){
     if (arg.empty())
       throw std::runtime_error("Empty input");
     for (size_t j = 0; j < arg.size(); ++j) {
-      if (!std::isdigit(arg[j]))
+      if (!std::isdigit(static_cast<unsigned char>(arg[j])))
         throw std::runtime_error("invalid character in input: " + arg);
     }
     long num = std::atol(arg.c_str());
-    if (num < 0 || num > INT_MAX)
+    if (num <= 0 || num > INT_MAX)
       throw std::runtime_error("Number out of range: " + arg);
     if (!seen.insert(static_cast<int>(num)).second)
       throw std::runtime_error("Duplicate number " + arg);

@@ -6,7 +6,7 @@
 /*   By: ishenriq <ishenriq@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 18:07:58 by ishenriq          #+#    #+#             */
-/*   Updated: 2025/09/20 18:49:49 by ishenriq         ###   ########.fr       */
+/*   Updated: 2025/10/25 13:04:54 by ishenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PMERGEME_HPP
@@ -22,6 +22,7 @@
 # include <algorithm>
 # include <ctime>
 # include <climits>
+# include <cctype>
 
 class PmergeMe {
   private:
